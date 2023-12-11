@@ -1,7 +1,6 @@
 <?php
 
-
-    update(1, ["task" => "FSN", "status" => 1]);
+    delete(1);
 
     function connect() {
 
@@ -73,6 +72,20 @@
 
         if($return) {
             echo "Task atualizada com sucesso.";
+        }
+
+    }
+
+    function delete(int $id_task) {
+
+        $connect = connect();
+
+        $sql = "DELETE FROM tasks WHERE id_task = $id_task";
+
+        $return = mysqli_query($connect, $sql);
+
+        if($return) {
+            echo "Task removida com sucesso.";
         }
 
     }
