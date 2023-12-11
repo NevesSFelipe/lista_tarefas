@@ -1,7 +1,7 @@
 <?php
 
 
-    read();
+    update(1, ["task" => "FSN", "status" => 1]);
 
     function connect() {
 
@@ -50,6 +50,29 @@
                 print("$row[0] - $row[1] - $row[2] . <br>");
             }
         
+        }
+
+    }
+
+    function update(int $id_task, array $dateUpdate) {
+
+        $connect = connect();
+
+        $set = "";
+        foreach($dateUpdate as $column => $value) {
+
+            $set .= "$column = '$value', ";
+        
+        }
+
+        $set = rtrim($set, ", ");
+
+        $sql = "UPDATE tasks SET $set WHERE id_task = $id_task";
+
+        $return = mysqli_query($connect, $sql);
+
+        if($return) {
+            echo "Task atualizada com sucesso.";
         }
 
     }
