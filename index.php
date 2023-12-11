@@ -1,7 +1,7 @@
 <?php
 
-    $dateInsert = ["task" => "Aprender PHP"];
-    create($dateInsert);
+
+    read();
 
     function connect() {
 
@@ -31,6 +31,25 @@
 
         if($return) {
             echo "Task adicionado com sucesso.";
+        }
+
+    }
+
+    function read() {
+
+        $connect = connect();
+        
+        $sql = "SELECT * FROM tasks";
+
+        $return = mysqli_query($connect, $sql);
+
+        if($return) {
+            
+            print("ID - TASK - STATUS <br>");
+            while ($row = mysqli_fetch_row($return)) {
+                print("$row[0] - $row[1] - $row[2] . <br>");
+            }
+        
         }
 
     }
