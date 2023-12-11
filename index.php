@@ -1,6 +1,7 @@
 <?php
 
-    connect();
+    $dateInsert = ["task" => "Aprender PHP"];
+    create($dateInsert);
 
     function connect() {
 
@@ -13,5 +14,23 @@
 
         $mysqli = mysqli_connect($host, $user, $pass, $database);
         mysqli_set_charset($mysqli, "utf8mb4");
+
+        return $mysqli;
+
+    }
+
+    function create(array $dateInsert) {
+
+        $connect = connect();
+
+        $task = $dateInsert["task"];
+
+        $sql = "INSERT INTO tasks (task, status) VALUES ('$task', 0)";
+
+        $return = mysqli_query($connect, $sql);
+
+        if($return) {
+            echo "Task adicionado com sucesso.";
+        }
 
     }
