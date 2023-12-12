@@ -1,6 +1,9 @@
 <?php
 
-    delete(1);
+    create(["task" => "Estudar Tratativas de Erros"]);
+    read();
+    update(3, ["status" => 1]);
+    delete(3);
 
     function connect() {
 
